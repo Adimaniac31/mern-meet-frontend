@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// frontend/src/App.js
+import React from 'react';
+import axios from 'axios';
+import MeetingsList from './components/MeetingsList';
 
-function App() {
+const App = () => {
+  const createMeeting = async () => {
+    const response = await axios.post('/api/meetings/create');
+    if (response.status === 200) {
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={createMeeting}>Create Google Meet</button>
+      <MeetingsList />
     </div>
   );
-}
+};
 
 export default App;
+
+
